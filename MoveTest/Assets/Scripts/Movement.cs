@@ -33,9 +33,11 @@ public class Movement : MonoBehaviour
         Vector3 rotation = Vector3.zero;
 
         // grab input
-        float rotate = Input.GetAxisRaw("Horizontal");
+        float rotate = Input.GetAxisRaw("Mouse ScrollWheel");
+        //direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
-        myRB.AddForce(direction.normalized * Speed);
-        myRB.AddTorque(rotate * RotSpeed);
+        myRB.AddForce(transform.up * direction.y * Speed * Time.deltaTime);
+        myRB.AddTorque(rotate * RotSpeed * Time.deltaTime);
+        
     }
 }
